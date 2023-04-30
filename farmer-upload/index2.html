@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  </head>
+  <body>
+    <section class="mobile">
+      <div class="upload_container_mov">
+        <h1 class="upload_title">Upload Flies</h1>
+        <p class="having_problems">
+          Having problems? <a href="#" class="contact_us">Contact Us</a>
+        </p>
+        <div class="upload_button">
+          <div class="set1">
+          <div class="box">
+            <img src="/image/upload.png" alt="" class="image-display" /><span
+              class="no an"
+              >1*</span
+            >
+          </div>
+          <div class="box">
+            <img
+              src="/image/upload.png"
+              alt=""
+              class="image-display1"
+            /><span class="no">2*</span>
+          </div>
+        </div>
+        <div class="set1">
+          <div class="box">
+            <img
+              src="/image/upload.png"
+              alt=""
+              class="image-display2"
+            /><span class="no">3*</span>
+          </div>
+          <div class="box">
+            <img
+              src="/image/upload.png"
+              alt=""
+              class="image-display3"
+            /><span class="no">4*</span>
+          </div>
+        </div>
+          <!-- <div class="upload_btn"><button class="btn">Add files</button></div> -->
+          <div class="upload_btn btn">
+            <label class="file-upload">
+              <input type="file" class="file-input a_input" multiple />
+              <span>Add files</span>
+            </label>
+            <button class="btn_p">Publish</button>
+          </div>
+        </div>
+          
+        <div class="form_1">
+            <p class="heading">Options</p>
+          <div class="form_details">
+            <div class="filed">
+              <label for="">Category</label>
+              <select class="input" name="items_name">
+                <option disabled selected>Select Item Name</option>
+                <option value="Rice">Rice</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Fruits">Fruits</option>
+                <option value="other">other</option>
+              </select>
+            </div>
+            <div class="filed">
+              <label for="">Email</label>
+              <div class="verify_check">
+                <input
+                  type="email"
+                  class="input"
+                  placeholder="Enter Email "
+                /><span class="verify">Verify</span>
+              </div>
+            </div>
+
+            <div class="filed">
+              <label for="">OTP</label>
+              <div class="email_tick">
+                <input
+                  type="password"
+                  class="input"
+                  placeholder="Enter OTP "
+                /><i class="fa-sharp fa-solid fa-circle-check tick"></i
+                ><i class="fa-solid fa-circle-xmark tick1"></i>
+              </div>
+            </div>
+          </div>
+          <div class="form_details">
+            <div class="filed">
+              <label for="">Agro Mart ID</label>
+              <input
+                type="text"
+                class="input"
+                placeholder="Enter Agro Mart Id "
+              />
+            </div>
+            <div class="filed">
+              <label for="">City</label>
+              <select class="input" name="items_name">
+                <option disabled selected>Select City</option>
+                <option value="Nilagiri">Nilagiri</option>
+                <option value="Tiruppur">Tiruppur</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Erode">Erode</option>
+                <option value="Namakkal">Namakkal</option>
+                <option value="Salem">Salem</option>
+              </select>
+            </div>
+            <div class="filed">
+              <label for="">Mobile Number</label>
+              <input
+                type="tel"
+                class="input"
+                placeholder="Enter Mobile Number "
+                maxlength="10"
+              />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form_2">
+            <p class="heading">Details</p>
+            <div class="form_details">
+              <div class="filed">
+                <label for="">Quantity</label>
+                <input type="number" class="input" placeholder="Enter Quantity" maxlength="10">
+            </div>
+            <div class="filed">
+              <label for="">Expiry Date</label>
+              <select class="input" name="items_name">
+                <option disabled selected>Expiry Date</option>
+                <option value="week1">Best before 1 week</option>
+                <option value="week2">Best before 2 week</option>
+                <option value="month1">Best before 1 month</option>
+                <option value="month2">Best before 2 month</option>
+                <option value="above">Above 2 month</option>
+              </select>
+            </div>
+            <div class="filed">
+              <label for="">Price:₹./KG</label>
+              <input type="number" class="input" placeholder="Enter Price" maxlength="10">
+          </div>
+            </div>
+            <div class="form_details">
+              <div class="filed">
+                <label for="">Product Description</label>
+                <textarea id="w3review" name="w3review" rows="1" cols="20" class="textarea"></textarea>
+            </div> 
+            </div>
+      </div>
+
+      <div class="notice">
+        <p class="heading head">Description</p>
+        <div class="note">
+        <li class="notice_details"><i class="fa-solid fa-star"></i> The Upload product are from my own product if any problem I will take responsibility.</li>
+        <br>
+        <li class="notice_details"><i class="fa-solid fa-star"></i> If the product does not reach a customer within 5 days, I agree for the removal of the product from the website.</li>
+        <br>
+        <li class="notice_details"><i class="fa-solid fa-star"></i> if the product caused any damage I will take responsibility.</li>
+        <br>
+        <li class="notice_details"><i class="fa-solid fa-star"></i> if any comments or complaints received from the customer about the product, I will take all the resonsibility.</li>
+      </div>
+        <br><br>
+        <form>
+           <li class="label"><input type="checkbox" name="agree" id="agree" class="check"> I agree to the terms and conditions of Agro Mart's Product Section.</li>
+          <br>
+          <button class="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+  </body>
+  <script src="/script2.js"></script>
+</html>

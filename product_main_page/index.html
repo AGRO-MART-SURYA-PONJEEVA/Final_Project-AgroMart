@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product_Customber_page</title>
+    <link rel="stylesheet" href="/product_main_page/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script
+    type="module"
+    src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"
+  ></script>
+  <script
+    type="module"
+    src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"
+  ></script>
+  <script
+    type="module"
+    src="https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js"
+  ></script>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-basket-shopping"></i> Agro mart</a
+      >
+      <nav class="nav_bar">
+        <a href="#"><li>Home</li></a>
+        <a href="#"><li>Cart</li></a>
+        <a href="#"><li>Help</li></a>
+      </nav>
+      <div class="search_box search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" class="search" />
+        <div class="search-results">
+          <!-- Results will be displayed here -->
+        </div>
+      </div>
+      <div class="picode_display">
+        <p class="pincode">643239</p>
+        <i class="fa-sharp fa-solid fa-location-dot"></i>
+      </div>
+      <div class="profile_display">
+        <i class="fa-solid fa-user"></i>
+        <p class="pincode name">RAJASURYA R</p>
+      </div>
+    </header>
+    <section class="product_dispay_main">
+      <div class="side_nav_bar">
+        <div class="side_nav_Items">
+          <div class="box_1">
+            <div class="box_1_text_box_continer">
+              <p class="box_1_text">
+                <strong>Sort By:</strong
+                ><span class="text">Price High to Low</span>
+              </p>
+              <i class="fa-sharp fa-solid fa-angle-up up"></i>
+              <i class="fa-sharp fa-solid fa-angle-down down"></i>
+            </div>
+            <div class="box_1_list display">
+              <div class="input" data-set="1">
+                <input
+                  type="radio"
+                  value="Relevance"
+                  name="radio"
+                  class="radio btn_1"
+                /><span class="span">Relevance</span><br />
+              </div>
+              <div class="input" data-set="2">
+                <input
+                  type="radio"
+                  value="Price Low to High"
+                  name="radio"
+                  class="radio btn_2"
+                /><span class="span">Price Low to High</span><br />
+              </div>
+              <div class="input" data-set="3">
+                <input
+                  type="radio"
+                  value="Price High to Low"
+                  name="radio"
+                  class="radio btn_3"
+                /><span class="span">Price High to Low</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="filters_container">
+            <p class="filtertext"><strong>Filters</strong></p>
+          </div>
+          <div class="filters_cat filters_container">
+            <p class="filtertext col_cat"><strong>Categories</strong></p>
+            <div class="cat_lis">
+              <div class="input cat">
+                <input
+                  type="radio"
+                  value=""
+                  name="pro"
+                  class="radio btn_3"
+                /><span class="span">Rice</span>
+              </div>
+              <div class="input cat">
+                <input
+                  type="radio"
+                  value=""
+                  name="pro"
+                  class="radio btn_3"
+                /><span class="span">Wheat</span>
+              </div>
+              <div class="input cat">
+                <input
+                  type="radio"
+                  value=""
+                  name="pro"
+                  class="radio btn_3"
+                /><span class="span">Vegetable</span>
+              </div>
+              <div class="input cat">
+                <input
+                  type="radio"
+                  value=""
+                  name="pro"
+                  class="radio btn_3"
+                /><span class="span">Fresh Fruits</span>
+              </div>
+              <div class="input cat">
+                <input
+                  type="radio"
+                  value=""
+                  name="pro"
+                  class="radio btn_3"
+                /><span class="span">Others</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="filters_cat filters_container filters_star">
+            <p class="filtertext col_cat"><strong>Ratings</strong></p>
+            <ul class="ratings">
+              <li>
+                <input type="radio" name="star" />
+                <span class="rating">★★★★★</span><span>(1000)</span>
+              </li>
+              <li>
+                <input type="radio" name="star" />
+                <span class="rating">★★★★<span class="s">★</span></span
+                ><span>(800)</span>
+              </li>
+              <li>
+                <input type="radio" name="star" />
+                <span class="rating">★★★<span class="s">★★</span></span
+                ><span>(500)</span>
+              </li>
+              <li>
+                <input type="radio" name="star" />
+                <span class="rating">★★<span class="s">★★★</span></span
+                ><span>(0)</span>
+              </li>
+              <li>
+                <input type="radio" name="star" />
+                <span class="rating">★<span class="s">★★★★</span></span
+                ><span>(0)</span>
+              </li>
+            </ul>
+          </div>
+          <div id="google_translate_element" title="Choose Language"></div>
+        </div>
+      </div>
+      <!-- ////////////////////////////////////// -->
+      <div class="product_display">
+
+
+        <div class="box_item_display">
+          <div class="slider">
+            <img src="/image/1.jpg" alt="" class="img_slide">
+            <img src="/image/2.jpg" alt="" class="img_slide">
+            <img src="/image/3.jpg" alt="" class="img_slide">
+            <img src="/image/4.jpg" alt="" class="img_slide">
+            <button class="prev"></button>
+            <button class="next"></button>
+          </div>
+          
+          <div class="image_details">
+            <p class="text_name">
+              Product Name <span class="col">:</span>
+              <span class="pro_name">Rice</span>
+            </p>
+            <p class="text_name">
+              Farmer Name <span class="col1">:</span>
+              <span class="far_name">Rajasurya R</span>
+            </p>
+            <p class="text_name">
+              City <span class="col3">:</span>
+              <span class="city_name">Nilagiri</span>
+            </p>
+            <p class="text_name">
+              Mobile No <span class="col4">:</span>
+              <span class="mob_name">9840864118</span>
+            </p>
+            <p class="text_name">
+              Total Qty<br />Available <span class="col5">:</span>
+              <span class="qty_name">50/Kg</span>
+            </p>
+          </div>
+          <div class="box_add">
+            <p class="price">₹2000-/Kg</p>
+            <div class="a_p">
+              <p class="star_rat">
+                <span class="rating">★★★★★</span
+                ><span class="count">(1000)</span>
+              </p>
+              <p class="count1">Agro Mart Assured</p>
+              <p class="del">
+                <i class="fa-solid fa-truck"></i> Fast Delivery(1-2 Days)
+              </p>
+              <p class="id"><span>Product ID : </span><span>4545</span></p>
+            </div>
+          </div>
+          <div>
+            <button class="buy">Buy Now</button>
+          </div>
+          <div>
+            <p class="ex">Expiry Date:1 week</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script
+    type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  ></script>
+  <script src="/product_main_page/script.js"></script>
+</html>

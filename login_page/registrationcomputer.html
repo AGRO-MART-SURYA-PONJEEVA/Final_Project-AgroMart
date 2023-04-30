@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="/login_page/registrationcom.css">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!--<title>Responsive Regisration Form </title>--> 
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>Registration</header>
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>First Name</label>
+                            <input type="text" placeholder="Enter your First Name">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Enter your Last Name(optional)">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" placeholder="Enter your email">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input type="tel" class="input mobile" name="mobile" placeholder="" maxlength="10"/>
+                        </div>
+                        <div class="input-field">
+                            <label>Alternative Mobile Number</label>
+                            <input type="tel" class="input mobile1" name="mobile" placeholder="" maxlength="10"/>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Roll</label>
+                            <select required>
+                                <option disabled selected>Select Roll</option>
+                                <option>Farmer</option>
+                                <option>customer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details ID">
+                    <span class="title">Security Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Password(Number)</label>
+                            <input type="password" placeholder="Enter Password" maxlength="4">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Confirm Password(number)</label>
+                            <input type="password" placeholder="Enter Confirm Password" maxlength="4">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Aadhar Number</label>
+                            <input type="tel" placeholder="Enter Aadhar Number(optional)" maxlength="12">
+                        </div>
+                    </div>
+
+                    <button class="nextBtn">
+                        <span class="btnText">Next</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                </div> 
+            </div>
+
+            <div class="form second">
+                <div class="details address">
+                    <span class="title">Address Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Pincode</label>
+                            <input type="tel" placeholder="Enter Pincode" maxlength="6">
+                        </div>
+
+                        <div class="input-field">
+                            <label>State</label>
+                            <select required>
+                                <option disabled selected>Select State</option>
+                                <option value="tn" class="sd">Tamil Nadu</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>District</label>
+                            <select required>
+                                <option disabled selected>Select City</option>
+                                <option value="Nilagiri">Nilagiri</option>
+                                <option value="Tiruppur">Tiruppur</option>
+                                <option value="Coimbatore">Coimbatore</option>
+                                <option value="Erode">Erode</option>
+                                <option value="Namakkal">Namakkal</option>
+                                <option value="Salem">Salem</option>
+                              </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label> House No,Building Name</label>
+                            <input type="text" placeholder=" House No,Building Name">
+                        </div>
+                        <div class="input-field">
+                            <label>Road name,Area,Colony</label>
+                            <input type="number" placeholder="Road name,Area,Colony">
+                        </div>
+                        <div class="input-field">
+                            <label>Type of address</label>
+                            <select required>
+                                <option disabled selected>Type of address</option>
+                                <option value="Home">Home</option>
+                                <option value="work">work</option>
+                              </select>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="details family">
+                    <span class="title">Bank Details(KYC) Optional</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Account User Name</label>
+                            <input type="text" placeholder="Account User Name">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Pancard Number</label>
+                            <input type="text" placeholder="Enter Pancard" >
+                        </div>
+
+                        <div class="input-field">
+                            <label>Aadhar Number</label>
+                            <input type="tel" placeholder="Enter Aadhar Number(optional)" maxlength="12">
+                        </div>
+
+                        <div class="input-field">
+                            <label>UPI ID</label>
+                            <input type="text" placeholder="Enter UPI ID">
+                        </div>
+
+                        
+
+                        <div class="input-field">
+                            <label>Enter Agro Mart ID</label>
+                            <input type="password" placeholder="Enter Agro Mart ID">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Confirm Enter Agro Mart ID</label>
+                            <input type="password" placeholder="Enter Agro Mart ID">
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <div class="backBtn">
+                            <i class="uil uil-navigator"></i>
+                            <span class="btnText">Back</span>
+                        </div>
+                        
+                        <button class="sumbit">
+                            <span class="btnText">Submit</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                    </div>
+                </div> 
+            </div>
+        </form>
+    </div>
+</body>
+<script src="/login_page/registrationcom.js"></script>
+</html>
