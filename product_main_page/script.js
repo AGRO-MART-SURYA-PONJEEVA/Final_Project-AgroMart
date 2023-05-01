@@ -14,6 +14,7 @@ const storage = firebase.storage();
 const storageRef = storage.ref();
 var formdb1 = firebase.database().ref("USER DATABASE");
 var formdb = firebase.database().ref("Global_Product_Details");
+var orderDetailsDatabase = firebase.database().ref("Global_order_details");
 //API Conection----------------------//
 //search button//
 
@@ -130,9 +131,8 @@ lan.addEventListener("click", function () {
 });
 //////////////////////
 // slider
-let i=0;
+let i = 0;
 const imageAnimation = function (a) {
-  
   for (i = 0; i < a; i++) {
     const slider = document.querySelector(`.slider${i}`);
 
@@ -186,6 +186,7 @@ storageRef
 formdb.on("value", function (snapshot) {
   snapshot.forEach(function (element) {
     let userData = element.val().ProductDetails.split("-");
+    let quantityLive = element.val().Quantity;
     const prodectDetails = {
       farmerName: userData[0],
       mobileNumber: userData[2],
@@ -197,11 +198,13 @@ formdb.on("value", function (snapshot) {
       price: userData[8],
       data: userData[9],
       productId: userData[11],
+      quantityLiveGet: quantityLive,
       url: [],
     };
     userProduct.push(prodectDetails);
   });
   linkGet();
+  // console.log(userProduct);
 });
 
 //link arrange//
@@ -220,8 +223,12 @@ const linkGet = function () {
 
 const row = document.querySelector(".product_display");
 const displayProduct = function () {
-  row.innerHTML="";
+  row.innerHTML = "";
   userProduct.forEach(function (mov, i) {
+    const q =
+      Number(mov.quantityLiveGet) > 0
+        ? mov.quantityLiveGet + "/Kg"
+        : "Out of stock";
     const html = `<div class="box_item_display">
   <div class="slider${i} slider">
     <img src="${mov.url[0]}" alt="" class="img_slide img${i}">
@@ -251,7 +258,7 @@ const displayProduct = function () {
     </p>
     <p class="text_name">
       Total Qty<br />Available <span class="col5">:</span>
-      <span class="qty_name">${mov.quantity}/Kg</span>
+      <span class="qty_name">${q}</span>
     </p>
   </div>
   <div class="box_add">
@@ -269,7 +276,7 @@ const displayProduct = function () {
     </div>
   </div>
   <div>
-    <button class="buy">Add Now</button>
+    <button class="buy" data-set="${i}">Add to cart</button>
   </div>
   <div>
     <p class="ex">Expiry Date:${mov.ex_data}</p>
@@ -281,8 +288,8 @@ const displayProduct = function () {
 };
 ///////////////////////////////////////////////
 
-const userName=document.querySelector(".name");
-const pinCode=document.querySelector(".pincode");
+const userName = document.querySelector(".name");
+const pinCode = document.querySelector(".pincode");
 
 let funa = localStorage.getItem("send");
 let alreadyUser = [];
@@ -292,16 +299,119 @@ formdb1.on("value", function (snapshot) {
     ids = ids.toLowerCase();
     const user = {
       fullName: element.val().FullName,
-      pincocde:element.val().Pincode,
+      mobile: element.val().Mobile,
+      pincocde: element.val().Pincode,
+      house: element.val().House,
+      road: element.val().Road,
+      landmark: element.val().Landmark,
     };
     alreadyUser.push(user);
   });
-  console.log(alreadyUser);
   getData();
+  console.log(alreadyUser);
 });
-const getData=function(){
-  const find1 = alreadyUser.find((mov) => mov?.fullName ===funa );
-  userName.textContent=`${find1.fullName}`;
-  pinCode.textContent=`${find1.pincocde}`;
-  console.log(find1);
-}
+const getData = function () {
+  const find1 = alreadyUser.find((mov) => mov?.fullName === funa);
+  userName.textContent = `${find1.fullName}`;
+  pinCode.textContent = `${find1.pincocde}`;
+};
+//Add Cart//
+const getOrderDetails = document.querySelector(".getOrderDetails");
+const addCartButton = document.querySelector(".product_display");
+const kg = document.querySelector(".kg");
+const x = document.querySelector(".fa-xmark");
+const confirmButton = document.querySelector(".con_btn");
+const priceUpdate = document.querySelector(".price_up");
+const orderType = document.querySelector(".order_type");
+var database = firebase.database();
+// key get
+let key = [];
+let tr = "";
+const updateData = function () {
+  formdb.on("value", function (snapshot) {
+    snapshot.forEach(function (element) {
+      key.push(element.key);
+    });
+  });
+};
+
+const takeOrder = function (o, kg, ot) {
+  let orderDetails = userProduct[o];
+  const totalKg = Number(orderDetails.quantityLiveGet);
+  const totalamount = Number(orderDetails.price);
+  const find1 = alreadyUser.find((mov) => mov?.fullName === funa);
+  if (find1 !== undefined) {
+    if (kg <= totalKg && kg !== 0) {
+      const randomNum = Math.floor(Math.random() * 9000) + 1000;
+      priceUpdate.textContent = `₹${kg * totalamount}`;
+      const farmerAddress = `${orderDetails.farmerName}-${orderDetails.city}-${orderDetails.mobileNumber}`;
+      const customberAddress = `${find1.fullName}-${find1.house}-${
+        find1.road
+      }-${find1.landmark}-${find1.mobile}-${orderDetails.productName}-${kg}-${
+        kg * totalamount
+      }-${ot}-${randomNum}`;
+      var newContactForm = orderDetailsDatabase.push();
+      newContactForm.set({
+        FarmerAddress: farmerAddress,
+        CustomberAddress: customberAddress,
+      });
+
+      var newData = {
+        Quantity: `${Math.abs(kg - orderDetails.quantityLiveGet)}`,
+      };
+      updateData();
+      updateDataLive(key[o], newData);
+      alert(
+        `Your order is confirmed and cannot be cancelled.\n Total Amount:${
+          kg * totalamount
+        }`
+      );
+      location.reload(true);
+    } else {
+      alert(" :( Out of Stock... :( ");
+      // location.reload(true);
+      tr = true;
+      c = 0;
+    }
+  } else {
+    alert("Plz Login...");
+  }
+};
+
+const updateDataLive = function (key, newData) {
+  console.log(key);
+  database
+    .ref("Global_Product_Details/" + key)
+    .update(newData)
+    .then(function () {
+      console.log("Data updated successfully!");
+    })
+    .catch(function (error) {
+      console.error("Error updating data: ", error);
+    });
+};
+
+let n,
+  c = 0;
+
+addCartButton.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".buy");
+  n = clicked.dataset.set;
+  getOrderDetails.classList.remove("display");
+  c = 0;
+});
+x.addEventListener("click", () => getOrderDetails.classList.add("display"));
+confirmButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (tr === true) {
+    c = 0;
+  }
+  const kgGet = Number(kg.value);
+  const orType = orderType.value;
+  if (c === 0 && orType !== "") {
+    takeOrder(n, kgGet, orType);
+    c = 1;
+  } else {
+    alert("your order Already Submit ,plz checkout.");
+  }
+});

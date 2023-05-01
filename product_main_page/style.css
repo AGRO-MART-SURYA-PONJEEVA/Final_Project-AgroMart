@@ -537,3 +537,42 @@ table {
   width: 230px;
   height: 200px;
 }
+
+.getOrderDetails{
+  font-family: "Poppins", sans-serif;
+  position: absolute;
+  border: 3px solid wheat;
+  width: 300px;
+  height: 39%;
+  top: 27%;
+  left: 40%;
+  background-color: wheat;
+  padding: 20px;
+}
+.kg_name{
+
+  position: relative;
+  font-size: 20px;
+}
+.fa-xmark{
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 25px;
+  cursor: pointer;
+}
+.kg{
+  width: 250px;
+  height: 30px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+.con_btn{
+  margin-top: 15px;
+  margin-left: 30px;
+ 
+}
+.rupee{
+  text-align: center;
+ font-size: 20px;
+}
