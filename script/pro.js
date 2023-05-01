@@ -135,6 +135,7 @@ login.addEventListener("click", function (e) {
       userRoll.textContent = `${find1.roll}`;
       login.textContent = "login out";
       a = 1;
+      localStorage.setItem("send", find1.fullName);
     } else {
       alert("Plz check your Agro Mart Id");
     }
@@ -142,7 +143,6 @@ login.addEventListener("click", function (e) {
     location.reload(true);
   }
 });
-a = 0;
 agroMartId.addEventListener("click", function (e) {
   e.preventDefault();
   logIn.textContent = "Recovery";

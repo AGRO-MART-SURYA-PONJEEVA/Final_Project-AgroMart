@@ -12,6 +12,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 const storageRef = storage.ref();
+var formdb1 = firebase.database().ref("USER DATABASE");
 var formdb = firebase.database().ref("Global_Product_Details");
 //API Conection----------------------//
 //search button//
@@ -268,7 +269,7 @@ const displayProduct = function () {
     </div>
   </div>
   <div>
-    <button class="buy">Buy Now</button>
+    <button class="buy">Add Now</button>
   </div>
   <div>
     <p class="ex">Expiry Date:${mov.ex_data}</p>
@@ -278,3 +279,29 @@ const displayProduct = function () {
     row.insertAdjacentHTML("afterbegin", html);
   });
 };
+///////////////////////////////////////////////
+
+const userName=document.querySelector(".name");
+const pinCode=document.querySelector(".pincode");
+
+let funa = localStorage.getItem("send");
+let alreadyUser = [];
+formdb1.on("value", function (snapshot) {
+  snapshot.forEach(function (element) {
+    let ids = element.val().PermanentedId;
+    ids = ids.toLowerCase();
+    const user = {
+      fullName: element.val().FullName,
+      pincocde:element.val().Pincode,
+    };
+    alreadyUser.push(user);
+  });
+  console.log(alreadyUser);
+  getData();
+});
+const getData=function(){
+  const find1 = alreadyUser.find((mov) => mov?.fullName ===funa );
+  userName.textContent=`${find1.fullName}`;
+  pinCode.textContent=`${find1.pincocde}`;
+  console.log(find1);
+}
