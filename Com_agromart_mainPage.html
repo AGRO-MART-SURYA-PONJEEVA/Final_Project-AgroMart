@@ -19,6 +19,16 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
+
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"
+    ></script>
+
   </head>
   <body>
     <header class="header">
@@ -78,15 +88,19 @@
         <a href="#" class="btn">Checkout</a>
       </div>
 
-      <form action="#" class="login-form">
-        <h3>login now</h3>
-        <input type="email" placeholder=" Enter agro mart-id" class="box" />
-        <p>Forget your password <a href="#"> click hear</a></p>
-        <p>
+      <form class="login-form">
+        <h3 class="loginus">login now</h3>
+        <h3 class="name display">RAJASURYA R</h3>
+        <input type="text" placeholder=" Enter agro mart-id" class="box id"/>
+        <input type="email" placeholder=" Enter registered Email" class="box email display"/>
+        <p class="Aid">Forget your password <a href="#"> click hear</a></p>
+        <p class="roll">
           Don't have account
           <a href="/login_page/registrationcomputer.html"> create account</a>
         </p>
-        <input type="submit" value="login now" class="btn" />
+        <!-- <input type="button" value="login now" class="btn" /> -->
+        <button class="butt">login now</button>
+        <button class="but_send butt display">Send</button>
       </form>
     </header>
     <!-- header section -->
@@ -518,6 +532,7 @@
 
     <!-- //footer section -->
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="/script/pro.js"></script>
 </html>

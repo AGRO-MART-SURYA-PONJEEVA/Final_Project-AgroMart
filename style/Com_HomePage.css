@@ -62,8 +62,23 @@ color: var(--black);
     cursor: pointer;
     background: none; 
 }
+.butt{
+    border: .2rem solid var(--black);
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    color: var(--black);
+    cursor: pointer;
+    background: none; 
+}
 .btn:hover
 {
+    background: var(--green);
+    color: #fff;
+}
+.butt:hover{
     background: var(--green);
     color: #fff;
 }
@@ -237,13 +252,11 @@ color: var(--green);
     text-align: center;
     color: var(--black);
 }
-.header .shopping-cart .btn{
+.header .shopping-cart .btn .butt{
     display: block;
     text-align: center;
     margin: 1rem 0;
 }
-
-
 .header .login-form
 {
     border: 0px solid;
@@ -769,4 +782,7 @@ padding: 1rem;
         text-align: center;
     }
 
+}
+.display{
+    display: none;
 }
