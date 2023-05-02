@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/farmer-upload/style.css" />
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -13,19 +13,35 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script
+  type="module"
+  src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"
+></script>
+<script
+  type="module"
+  src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"
+></script>
+<script
+  type="module"
+  src="https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js"
+></script>
   </head>
   <body>
     <section class="mobile">
+      <marquee behavior="scroll" direction="left">
+        <p class="note1">>>Language translations are provided for convenience only. In case of any conflict, the English version of the website will prevail.</p><p class="note1">>>If an Inquiry Contact US 9840864118.</p></marquee>
       <div class="upload_container_mov">
-        <h1 class="upload_title">Upload Flies</h1>
+        <h1 class="upload_title">Product Upload</h1>
         <p class="having_problems">
           Having problems? <a href="#" class="contact_us">Contact Us</a>
         </p>
+        <div id="google_translate_element" title="Choose Language"></div>
         <div class="upload_button">
           <div class="set1">
           <div class="box">
             <img src="/image/upload.png" alt="" class="image-display" /><span
-              class="no an"
+              class="no"
               >1*</span
             >
           </div>
@@ -68,7 +84,7 @@
           <div class="form_details">
             <div class="filed">
               <label for="">Category</label>
-              <select class="input" name="items_name">
+              <select class="input category" name="items_name">
                 <option disabled selected>Select Item Name</option>
                 <option value="Rice">Rice</option>
                 <option value="Wheat">Wheat</option>
@@ -82,7 +98,7 @@
               <div class="verify_check">
                 <input
                   type="email"
-                  class="input"
+                  class="input email"
                   placeholder="Enter Email "
                 /><span class="verify">Verify</span>
               </div>
@@ -93,25 +109,24 @@
               <div class="email_tick">
                 <input
                   type="password"
-                  class="input"
+                  class="input otp"
                   placeholder="Enter OTP "
-                /><i class="fa-sharp fa-solid fa-circle-check tick"></i
-                ><i class="fa-solid fa-circle-xmark tick1"></i>
+                /><i class="fa-sharp fa-solid fa-circle-check tick"></i><i class="fa-solid fa-circle-xmark tick1"></i>
               </div>
             </div>
           </div>
           <div class="form_details">
             <div class="filed">
-              <label for="">Agro Mart ID</label>
+              <label for="">Farmer Name:</label>
               <input
                 type="text"
-                class="input"
-                placeholder="Enter Agro Mart Id "
+                class="input agID"
+                placeholder="Enter Farmer Name: "
               />
             </div>
             <div class="filed">
               <label for="">City</label>
-              <select class="input" name="items_name">
+              <select class="input city" name="items_name">
                 <option disabled selected>Select City</option>
                 <option value="Nilagiri">Nilagiri</option>
                 <option value="Tiruppur">Tiruppur</option>
@@ -125,7 +140,7 @@
               <label for="">Mobile Number</label>
               <input
                 type="tel"
-                class="input"
+                class="input mobil"
                 placeholder="Enter Mobile Number "
                 maxlength="10"
               />
@@ -138,30 +153,31 @@
             <p class="heading">Details</p>
             <div class="form_details">
               <div class="filed">
-                <label for="">Quantity</label>
-                <input type="number" class="input" placeholder="Enter Quantity" maxlength="10">
+                <label for="">Enter Product Name:</label>
+                <input type="text" class="input nameF" placeholder="Enter Enter Product Name:" maxlength="10">
             </div>
             <div class="filed">
-              <label for="">Expiry Date</label>
-              <select class="input" name="items_name">
-                <option disabled selected>Expiry Date</option>
-                <option value="week1">Best before 1 week</option>
-                <option value="week2">Best before 2 week</option>
-                <option value="month1">Best before 1 month</option>
-                <option value="month2">Best before 2 month</option>
-                <option value="above">Above 2 month</option>
-              </select>
-            </div>
-            <div class="filed">
-              <label for="">Price:₹./KG</label>
-              <input type="number" class="input" placeholder="Enter Price" maxlength="10">
+              <label for="">Quantity</label>
+              <input type="number" class="input quantity" placeholder="Enter Quantity" maxlength="10">
           </div>
-            </div>
-            <div class="form_details">
+          <div class="filed">
+            <label for="">Expiry Date</label>
+            <select class="input expiryDate" name="items_name">
+              <option disabled selected>Expiry Date</option>
+              <option value="1_week">Best before 1 week</option>
+              <option value="1_week">Best before 2 week</option>
+              <option value="1_month">Best before 1 month</option>
+              <option value="2_month">Best before 2 month</option>
+              <option value="above">Above 2 month</option>
+            </select>
+          </div>
+          <div class="filed">
+            <label for="">Price:₹./KG</label>
+            <input type="number" class="input price" placeholder="Enter Price" maxlength="10">
+        </div>
               <div class="filed">
                 <label for="">Product Description</label>
-                <textarea id="w3review" name="w3review" rows="1" cols="20" class="textarea"></textarea>
-            </div> 
+                <textarea id="w3review" name="w3review" rows="3" cols="40" class="textarea"></textarea>
             </div>
       </div>
 
@@ -185,5 +201,7 @@
       </div>
     </section>
   </body>
-  <script src="/script2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="/farmer-upload/script2.js"></script>
 </html>

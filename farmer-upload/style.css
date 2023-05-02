@@ -284,6 +284,7 @@ li{
 @media only screen and (max-width: 915px) {
   body{
     background-color: white;
+    overflow-y: scroll;
   }
  .upload_container_mov{
   /* border: 3px solid; */
@@ -304,7 +305,7 @@ li{
 }
 .set1{
   display: flex;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 .box,.upload_btn{
   margin: 0 auto;

@@ -26,6 +26,7 @@ const publish = document.querySelector(".btn_p");
 const box = document.querySelectorAll(".box");
 const no = document.querySelectorAll(".no");
 const randomNum = Math.floor(Math.random() * 9000) + 1000;
+console.log(randomNum);
 imageInput.addEventListener("click", function () {
   no.forEach((mov) => {
     mov.style.marginLeft = "0px";
@@ -228,10 +229,12 @@ submit.addEventListener("click", function (e) {
       ref.child(name + "3").put(file3);
       ref.child(name + "4").put(file4);
       alert("Your product upload successfully");
-      updateData();
     } else {
       alert("Plz Enter all the details for product update in webpage");
     }
+  }
+  else{
+    alert("Plz verify You");
   }
 });
 let s = "";
@@ -285,19 +288,6 @@ verify.addEventListener("click", function (e) {
 });
 // console.log(randomNum);
 /////////////////////////////////
-
-// console.log(randomNum);
-// storageRef
-//   .listAll()
-//   .then((result) => {
-//     result.items.forEach((itemRef) => {
-//       // console.log(itemRef.fullPath);
-//     });
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
-  // var storageRef = firebase.storage().ref().child("");
   function googleTranslateElementInit() {
 
     new google.translate.TranslateElement({
@@ -314,34 +304,5 @@ verify.addEventListener("click", function (e) {
    
     }
 
-// update key
-let key = [];
-const updateData=function(){
-formdb.on("value", function (snapshot) {
-  snapshot.forEach(function (element) {
-    key.push(element.key);
-  });
-});
-}
-var database =firebase.database()
 
-const updateKey=function(key,newData)
-{
-  database.ref("Global_Product_Details/" + key).update(newData)
-  .then(function() {
-    console.log("Data updated successfully!");
-  })
-  .catch(function(error) {
-    console.error("Error updating data: ", error);
-  });
-}
-let i;
-const call=function(){
-  for(i=0;i<key.length;i++)
-  {
-    var newData = {
-      key:key[i],
-  };
-  updateKey(key[i],newData);
-  }
-}
+

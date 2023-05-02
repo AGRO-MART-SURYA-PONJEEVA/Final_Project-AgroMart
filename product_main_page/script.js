@@ -379,7 +379,7 @@ const takeOrder = function (o, kg, ot) {
 };
 
 const updateDataLive = function (key, newData) {
-  console.log(key);
+  // console.log(key);
   database
     .ref("Global_Product_Details/" + key)
     .update(newData)
