@@ -12,6 +12,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var formdb = firebase.database().ref("USER DATABASE");
+var orderDetailsDatabase = firebase.database().ref("Global_order_details");
 /////////////////
 let searchForm = document.querySelector(".search-form");
 document.querySelector("#search-btn").onclick = () => {
@@ -107,7 +108,7 @@ formdb.on("value", function (snapshot) {
     };
     alreadyUser.push(user);
   });
-  console.log(alreadyUser);
+  // console.log(alreadyUser);
 });
 ////
 const login = document.querySelector(".butt");
@@ -120,6 +121,7 @@ const userRoll = document.querySelector(".roll");
 const email = document.querySelector(".email");
 const send = document.querySelector(".but_send");
 let a = 0;
+let currentLogin = "";
 login.addEventListener("click", function (e) {
   e.preventDefault();
   if (a === 0) {
@@ -135,7 +137,9 @@ login.addEventListener("click", function (e) {
       userRoll.textContent = `${find1.roll}`;
       login.textContent = "login out";
       a = 1;
+      currentLogin = find1.fullName;
       localStorage.setItem("send", find1.fullName);
+      displayCart();
     } else {
       alert("Plz check your Agro Mart Id");
     }
@@ -166,3 +170,55 @@ send.addEventListener("click", function (e) {
   }
 });
 // RAJASURYA-2002-C
+//cart details//
+
+let userCartDetails = [];
+orderDetailsDatabase.on("value", function (snapshot) {
+  snapshot.forEach(function (element) {
+    let customberDetails = element.val().CustomberAddress;
+    customberDetails = customberDetails.split("-");
+    //  console.log(customberDetails);
+    const user = {
+      cusName: customberDetails[0],
+      product: customberDetails[5],
+      price: customberDetails[7],
+      qty: customberDetails[6],
+    };
+    userCartDetails.push(user);
+  });
+
+  // console.log(userCartDetails);
+});
+
+const row = document.querySelector(".scrol");
+const priceUpdate=document.querySelector(".price_update");
+let currentLoginCart = [];
+const displayCart = function () {
+ let total=0;
+  userCartDetails.forEach((mov) => {
+    if (mov.cusName === currentLogin) {
+      currentLoginCart.push(mov);
+    }
+  });
+  if(currentLoginCart.length!==0)
+  {
+    row.innerHTML = "";
+  }
+  currentLoginCart.forEach((mov) => {
+     total=total+Number(mov.price);
+    const html = `
+    <div class="box">
+    <i class="fa fa-trash"></i>
+    <img src="/image/farm.png" />
+    <div class="content">
+    <h3>${mov.product}</h3>
+    <span class="price">₹${mov.price}/</span>
+    <span class="Quanyity">Qty : ${mov.qty}</span>
+  </div>
+</div>     
+    `;
+    row.insertAdjacentHTML("afterbegin", html);
+  });
+  priceUpdate.textContent=total
+  // console.log(total);
+};

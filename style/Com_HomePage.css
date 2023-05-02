@@ -73,6 +73,7 @@ color: var(--black);
     cursor: pointer;
     background: none; 
 }
+
 .btn:hover
 {
     background: var(--green);
@@ -196,6 +197,14 @@ padding:  0 1.5rem;
     box-shadow: var(--box-shadow);
     width: 40rem;
     background: #fff;
+}
+.scrol{
+    height: 30rem;
+    overflow-y: scroll;
+}
+.cartEmpty{
+    margin-left: 30%;
+    margin-top: 25%;
 }
 .header .shopping-cart.active
 {
