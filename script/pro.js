@@ -222,3 +222,18 @@ const displayCart = function () {
   priceUpdate.textContent=total
   // console.log(total);
 };
+////
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: "en",
+
+      autoDisplay: "true",
+
+      includedLanguages: "ta,ml,te,kn,hi",
+
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+    },
+    "google_translate_element"
+  );
+}

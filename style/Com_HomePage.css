@@ -795,3 +795,43 @@ padding: 1rem;
 .display{
     display: none;
 }
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+    z-index: 9724790009779 !important;
+    top: 0;
+    left: unset;
+    right: -5px;
+    display: none !important;
+    border-radius: 50%;
+    border: 2px solid gold;
+  }
+  .VIpgJd-ZVi9od-aZ2wEe-OiiCO {
+    width: 10px;
+    height: 10px;
+  }
+  
+  #google_translate_element select {
+    background-color: #f6edfd;
+    color: #383ffa;
+    border: none;
+    border-radius: 3px;
+    padding: 6px 8px;
+    width: 100%;
+  }
+  .goog-logo-link {
+    display: none !important;
+  }
+  .goog-te-gadget {
+    color: transparent !important;
+  }
+  .goog-te-banner-frame {
+    display: none !important;
+  }
+  #goog-gt-tt,
+  .goog-te-balloon-frame {
+    display: none !important;
+  }
+  .goog-text-highlight {
+    background: none !important;
+    box-shadow: none !important;
+  }
