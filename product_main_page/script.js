@@ -361,11 +361,7 @@ const takeOrder = function (o, kg, ot) {
       };
       updateData();
       updateDataLive(key[o], newData);
-      alert(
-        `Your order is confirmed and cannot be cancelled.\n Total Amount:${
-          kg * totalamount
-        }`
-      );
+      alert(`Your order is confirmed :)\n Total Amount:${kg * totalamount}`);
       location.reload(true);
     } else {
       alert(" :( Out of Stock... :( ");
@@ -408,9 +404,13 @@ confirmButton.addEventListener("click", function (e) {
   }
   const kgGet = Number(kg.value);
   const orType = orderType.value;
-  if (c === 0 && orType !== "") {
-    takeOrder(n, kgGet, orType);
-    c = 1;
+  if (c === 0) {
+    if (kgGet !== "" && orType !== "Select Delivery Type:") {
+      takeOrder(n, kgGet, orType);
+      c = 1;
+    } else {
+      alert("Plz fill the details");
+    }
   } else {
     alert("your order Already Submit ,plz checkout.");
   }
