@@ -632,6 +632,7 @@ section {
   section {
     padding: 2rem;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -709,9 +710,4 @@ section {
 .goog-text-highlight {
   background: none !important;
   box-shadow: none !important;
-}
-.refresh {
-  display: block;
-  width: 30px;
-  height: 30px;
 }

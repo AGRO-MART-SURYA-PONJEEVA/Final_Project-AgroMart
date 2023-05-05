@@ -13,6 +13,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var formdb = firebase.database().ref("USER DATABASE");
 var orderDetailsDatabase = firebase.database().ref("Global_order_details");
+var deliveryDetailsDatabase = firebase
+  .database()
+  .ref("Global_delivery_details");
 /////////////////
 let searchForm = document.querySelector(".search-form");
 document.querySelector("#search-btn").onclick = () => {
@@ -223,9 +226,8 @@ const displayCart = function () {
     row.insertAdjacentHTML("afterbegin", html);
   });
   priceUpdate.textContent = total;
+  console.log(currentLoginCart);
 };
-
-
 
 //cart delete
 const cartDelete = function (n) {
@@ -303,12 +305,38 @@ send.addEventListener("click", function (e) {
 });
 
 //get key
-const bin = document.querySelector(".shopping-cart");
+const bin = document.querySelector(".scrol");
 bin.addEventListener("click", function (e) {
   e.preventDefault();
+  // if(e.target.classList.contains("btn")) return;
   const clicked = e.target.closest(".box");
   n = clicked.dataset.tra;
   cartDelete(n);
 });
 
 /////////////
+const Data = new Date();
+const date = new Date();
+const day = date.getDate();
+const month = date.getMonth();
+const year = date.getFullYear();
+const fullDate = `${day}/${month + 1}/${year}`;
+const randomNum = Math.floor(Math.random() * 9000) + 1000;
+const checkout = document.querySelector(".checkout");
+const userDeliveryData = function () {
+  var newContactForm = deliveryDetailsDatabase.push();
+  newContactForm.set({
+    OrderProduct: currentLoginCart,
+    OrderStatus: "ND",
+    ProductId: randomNum,
+    Date:fullDate,
+  });
+};
+checkout.addEventListener("click", function (e) {
+  e.preventDefault();
+  alert(
+    "Thank you for your purchase! Your invoice will be available in the View Order Details section of your account and registered Email. We appreciate your business and hope you enjoy your new agriculture product."
+  );
+  userDeliveryData();
+});
+//login conection//

@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    /* Style for the main container */
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    /* Style for the table */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 50px;
+    }
+    
+    /* Style for table headers */
+    th {
+      background-color: #4CAF50;
+      color: white;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    /* Style for table cells */
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    /* Style for the view invoice button */
+    .view-invoice-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .name{
+        /* border: 3px solid; */
+        width: 100%;
+        height: 100px;
+        margin-top: 10px;
+    }
+    .namedisplay{
+        font-size: 20px;
+        font-weight: bolder;
+    }
+    .id{
+        margin-top: 20px;
+        font-size: 18px;
+    }
