@@ -4,40 +4,58 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>View Order</title>
   <link rel="stylesheet" href="/orderdetails/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"
+    ></script>
+
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+	</script>
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+	</script>
 </head>
-<body>
+<body class="body">
   <div class="container">
     <h1>Order Details</h1>
     <div class="name">
-      <h3 class="namedisplay">Name : <span class="name_text">Rajasurya R</span></h3>
-      <p class="id"> <strong>Agro Mart ID :</strong> <span class="name_id">rajasurya-20002-c</span></p>
+      <h3 class="namedisplay">Name : <span class="name_text">....</span></h3>
+      <p class="id"> <strong>Agro Mart ID :</strong> <span class="name_id">....</span></p>
     </div>
     <table>
       <thead>
         <tr>
           <th>Order Date</th>
-          <th>Product ID</th>
-          <th>Quantity</th>
+          <th>Order ID</th>
+          <th>Cart</th>
           <th>Total</th>
           <th>Status</th>
           <th>View Invoice</th>
           <th>Download Invoice</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="view">
         <tr>
-          <td>May 10, 2023</td>
-          <td>Product 1</td>
-          
-          <td>2</td>
-          <td>$20.00</td>
+          <td>....</td>
+          <td>....</td>
+          <td>....</td>
+          <td>₹...</td>
           <td>Pending</td>
           <td><button class="view-invoice-button">View Invoice</button></td>
           <td><button class="view-invoice-button">Download Invoice</button></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>May 11, 2023</td>
           <td>Product 2</td>
           
@@ -46,19 +64,221 @@
           <td>Pending</td>
           <td><button class="view-invoice-button">View Invoice</button></td>
           <td><button class="view-invoice-button">Download Invoice</button></td>
-        </tr>
-        <tr>
+        </tr> -->
+        <!-- <tr>
           <td>May 12, 2023</td>
           <td>Product 3</td>
          
           <td>3</td>
           <td>$45.00</td>
           <td>Pending</td>
-          <td><button class="view-invoice-button">View Invoice</button></td>
+          <td><button class="view-invoice-button view">View Invoice</button></td>
           <td><button class="view-invoice-button">Download Invoice</button></td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
     </div>
+
+    <!-- //invoice// -->
+
+    <div class="wrapper display">
+      <div class="invoice_wrapper">
+        <div class="header">
+          <div class="logo_invoice_wrap">
+            <div class="logo_sec">
+              <img src="/orderdetails/image/favicon.PNG" alt="code logo" class="logo">
+              <div class="title_wrap">
+                <p class="title bold">Agro Mart</p>
+                <p class="sub_title">Privite Limited</p>
+              </div>
+            </div>
+            <div class="invoice_sec">
+              <p class="invoice bold">INVOICE</p>
+              <p class="invoice_no">
+                <span class="bold">Invoice</span>
+                <span class="idd">#3488</span>
+              </p>
+              <p class="date">
+                <span class="bold">Date</span>
+                <span class="data_dis">08/Jan/2022</span>
+              </p>
+            </div>
+          </div>
+          <div class="bill_total_wrap">
+            <div class="bill_sec">
+              <p>Bill To</p> 
+                    <p class="bold name user">Alex Deo</p>
+                  <span class="address1">
+                    3/4a5a,
+                  </span> <br>
+                  <span class="address2">
+                     vellachal,konnachal(po),
+                  </span> <br>
+                  <span class="address3">
+                     <span><strong>Landmark : </strong>School</span>
+                  </span> <br>
+                  <span class="address4">
+                   9840864118
+                 </span> 
+            </div>
+            <div class="total_wrap">
+              <p>Total Due</p>
+                    <p class="bold price">INR: <img src="/orderdetails/image/rupee-indian.png" alt="" class="rupee"><span class="price1">0</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="main_table">
+            <div class="table_header">
+              <div class="row">
+                <div class="col col_no">NO.</div>
+                <div class="col col_des">ITEM DESCRIPTION</div>
+                <div class="col col_price">PRICE</div>
+                <div class="col col_qty">QTY</div>
+                <div class="col col_total">TOTAL</div>
+              </div>
+            </div>
+            <div class="table_body">
+              <div class="row">
+                <div class="col col_no">
+                  <p>01</p>
+                </div>
+                <div class="col col_des">
+                  <p class="bold">Web Design</p>
+                  <p>Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="col col_price">
+                  <p>$350</p>
+                </div>
+                <div class="col col_qty">
+                  <p>2</p>
+                </div>
+                <div class="col col_total">
+                  <p>$700.00</p>
+                </div>
+              </div>
+               <div class="row">
+                <div class="col col_no">
+                  <p>02</p>
+                </div>
+                <div class="col col_des">
+                  <p class="bold">Web Development</p>
+                  <p>Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="col col_price">
+                  <p>$350</p>
+                </div>
+                <div class="col col_qty">
+                  <p>2</p>
+                </div>
+                <div class="col col_total">
+                  <p>$700.00</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col_no">
+                  <p>03</p>
+                </div>
+                <div class="col col_des">
+                  <p class="bold">GitHub</p>
+                  <p>Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="col col_price">
+                  <p>$120</p>
+                </div>
+                <div class="col col_qty">
+                  <p>1</p>
+                </div>
+                <div class="col col_total">
+                  <p>$700.00</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col_no">
+                  <p>04</p>
+                </div>
+                <div class="col col_des">
+                  <p class="bold">Backend Design</p>
+                  <p>Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="col col_price">
+                  <p>$350</p>
+                </div>
+                <div class="col col_qty">
+                  <p>2</p>
+                </div>
+                <div class="col col_total">
+                  <p>$700.00</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col_no">
+                  <p>05</p>
+                </div>
+                <div class="col col_des">
+                  <p class="bold">Backend Development</p>
+                  <p>Lorem ipsum dolor sit.</p>
+                </div>
+                <div class="col col_price">
+                  <p>$150</p>
+                </div>
+                <div class="col col_qty">
+                  <p>1</p>
+                </div>
+                <div class="col col_total">
+                  <p>$700.00</p>
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div class="paymethod_grandtotal_wrap">
+            <div class="paymethod_sec">
+              <p class="bold">Payment Method</p>
+              <p>Visa, master Card and We accept Cheque</p>
+                        <img src="/orderdetails/image/payment.png" alt="" class="pay">
+            </div>
+            <div class="grandtotal_sec">
+                  <p class="bold">
+                      <span>SUB TOTAL</span>
+                      <span>₹<span class="st">0</span></span>
+                  </p>
+                  <p>
+                      <span>Total Products</span>
+                      <span class="totao_pro">1</span>
+                  </p>
+                  <p>
+                      <span>Delivery</span>
+                      <span class="del_ch">₹0</span>
+                  </p>
+                   <p class="bold">
+                      <span>Grand Total</span>
+                      <span class="g_t">₹0</span>
+                  </p>
+                       
+                        <!--  -->
+            </div>
+                    <div class="status">
+                    <img src="/orderdetails/image/pending.png" alt=""  class="penimg">
+                    <img src="/orderdetails/image/pending-stamp-png-768x512.png" alt="" class="pen">
+                    <img src="/orderdetails/image/delivered stamp.png" alt="" class="pen del display">
+                </div>
+          </div>
+                
+        </div>
+        <div class="footer">
+          <p>Thank you and Best Wishes</p>
+          <div class="terms">
+                <p class="tc bold">Terms & Conditions</p>
+                <p>By placing an order for agriculture products, you agree to comply with our <a href="#">Terms & Conditions,</a> which include but are not limited to payment terms, delivery policies, product quality and warranty, and returns and refunds. Please read our Terms & Conditions carefully before placing your order.</p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- <input type="button" value="Convert HTML to PDF"			
+            onclick="convertHTMLtoPDF()"> -->
+    
+
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script src="/orderdetails/script.js"></script>
 </html>

@@ -120,6 +120,7 @@ let a = 0;
 let n;
 let userId = "";
 let currentLogin = "";
+let currentUserName="";
 //class//
 const login = document.querySelector(".butt");
 const id = document.querySelector(".id");
@@ -134,7 +135,6 @@ const priceUpdate = document.querySelector(".price_update");
 //localStroage//
 let funa1 = localStorage.getItem("send1");
 let logOut = localStorage.getItem("send2");
-
 //getting value from firebase//
 
 //user details in firebase
@@ -165,9 +165,11 @@ orderDetailsDatabase.on("value", function (snapshot) {
       price: customberDetails[7],
       qty: customberDetails[6],
       key: element.key,
+      address:customberDetails,
     };
     userCartDetails.push(user);
   });
+  // console.log(userCartDetails[0].address);
 });
 
 //function//
@@ -195,8 +197,9 @@ const updatecart = function () {
   }, 200);
 };
 //get current user all order details//
+let total = 0;
 const displayCart = function () {
-  let total = 0;
+  
   userCartDetails.forEach((mov) => {
     if (mov.cusName === currentLogin) {
       currentLoginCart.push(mov);
@@ -211,6 +214,7 @@ const displayCart = function () {
 
   //cart details display
   currentLoginCart.forEach((mov, i) => {
+    
     total = total + Number(mov.price);
     const html = `
     <div class="box" data-tra="${i}">
@@ -226,11 +230,12 @@ const displayCart = function () {
     row.insertAdjacentHTML("afterbegin", html);
   });
   priceUpdate.textContent = total;
-  console.log(currentLoginCart);
+
 };
 
 //cart delete
 const cartDelete = function (n) {
+  if(n!=="hi"){
   const userId = key[n];
   orderDetailsDatabase
     .child(userId)
@@ -245,6 +250,7 @@ const cartDelete = function (n) {
     .catch((error) => {
       console.error("Error deleting user:", error);
     });
+  }
 };
 //addEventListener
 
@@ -308,10 +314,15 @@ send.addEventListener("click", function (e) {
 const bin = document.querySelector(".scrol");
 bin.addEventListener("click", function (e) {
   e.preventDefault();
-  // if(e.target.classList.contains("btn")) return;
+ 
+  if(e.target.classList.contains("fa-trash")){
   const clicked = e.target.closest(".box");
   n = clicked.dataset.tra;
+  // console.log(e.target.classList.contains("fa-trash"));
   cartDelete(n);
+  // cartDelete();
+  }
+  cartDelete("hi");
 });
 
 /////////////
@@ -323,20 +334,56 @@ const year = date.getFullYear();
 const fullDate = `${day}/${month + 1}/${year}`;
 const randomNum = Math.floor(Math.random() * 9000) + 1000;
 const checkout = document.querySelector(".checkout");
+
 const userDeliveryData = function () {
+  let userNameLocalStroage = localStorage.getItem("send");
   var newContactForm = deliveryDetailsDatabase.push();
   newContactForm.set({
+    User:userNameLocalStroage,
     OrderProduct: currentLoginCart,
     OrderStatus: "ND",
     ProductId: randomNum,
     Date:fullDate,
+    Total:total,
+    Adresss:userCartDetails[0].address,
   });
 };
 checkout.addEventListener("click", function (e) {
   e.preventDefault();
+  if(currentLoginCart.length===0)
+  {
+     alert("Add product to Cart :)")
+  }
+  else
+  {
   alert(
     "Thank you for your purchase! Your invoice will be available in the View Order Details section of your account and registered Email. We appreciate your business and hope you enjoy your new agriculture product."
   );
   userDeliveryData();
+  deleteAllOrder();
+  }
 });
+const deleteAllOrder=function()
+{
+ console.log(currentLoginCart.length);
+ currentLoginCart.forEach((mov)=>{
+  mov.key;
+  const userId = mov.key;
+  orderDetailsDatabase
+    .child(userId)
+    .remove()
+    .then(() => {
+      // console.log("User deleted successfully");
+      // alert(
+      //   "We're sorry to hear that you removed a product from your cart. If you encountered any issues while shopping, please let us know so we can work to improve your experience. We strive to provide the best possible service and appreciate your feedback. If there's anything we can do to assist you in finding the right product, don't hesitate to reach out to our customer support team."
+      // );
+      location.reload(true);
+    })
+    .catch((error) => {
+      console.error("Error deleting user:", error);
+    });
+ })
+
+
+}
 //login conection//
