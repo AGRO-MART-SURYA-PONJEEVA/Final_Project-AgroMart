@@ -120,7 +120,7 @@ let a = 0;
 let n;
 let userId = "";
 let currentLogin = "";
-let currentUserName="";
+let currentUserName = "";
 //class//
 const login = document.querySelector(".butt");
 const id = document.querySelector(".id");
@@ -165,7 +165,7 @@ orderDetailsDatabase.on("value", function (snapshot) {
       price: customberDetails[7],
       qty: customberDetails[6],
       key: element.key,
-      address:customberDetails,
+      address: customberDetails,
     };
     userCartDetails.push(user);
   });
@@ -199,7 +199,6 @@ const updatecart = function () {
 //get current user all order details//
 let total = 0;
 const displayCart = function () {
-  
   userCartDetails.forEach((mov) => {
     if (mov.cusName === currentLogin) {
       currentLoginCart.push(mov);
@@ -214,7 +213,6 @@ const displayCart = function () {
 
   //cart details display
   currentLoginCart.forEach((mov, i) => {
-    
     total = total + Number(mov.price);
     const html = `
     <div class="box" data-tra="${i}">
@@ -230,26 +228,25 @@ const displayCart = function () {
     row.insertAdjacentHTML("afterbegin", html);
   });
   priceUpdate.textContent = total;
-
 };
 
 //cart delete
 const cartDelete = function (n) {
-  if(n!=="hi"){
-  const userId = key[n];
-  orderDetailsDatabase
-    .child(userId)
-    .remove()
-    .then(() => {
-      // console.log("User deleted successfully");
-      alert(
-        "We're sorry to hear that you removed a product from your cart. If you encountered any issues while shopping, please let us know so we can work to improve your experience. We strive to provide the best possible service and appreciate your feedback. If there's anything we can do to assist you in finding the right product, don't hesitate to reach out to our customer support team."
-      );
-      location.reload(true);
-    })
-    .catch((error) => {
-      console.error("Error deleting user:", error);
-    });
+  if (n !== "hi") {
+    const userId = key[n];
+    orderDetailsDatabase
+      .child(userId)
+      .remove()
+      .then(() => {
+        // console.log("User deleted successfully");
+        alert(
+          "We're sorry to hear that you removed a product from your cart. If you encountered any issues while shopping, please let us know so we can work to improve your experience. We strive to provide the best possible service and appreciate your feedback. If there's anything we can do to assist you in finding the right product, don't hesitate to reach out to our customer support team."
+        );
+        location.reload(true);
+      })
+      .catch((error) => {
+        console.error("Error deleting user:", error);
+      });
   }
 };
 //addEventListener
@@ -316,13 +313,13 @@ send.addEventListener("click", function (e) {
 const bin = document.querySelector(".scrol");
 bin.addEventListener("click", function (e) {
   e.preventDefault();
- 
-  if(e.target.classList.contains("fa-trash")){
-  const clicked = e.target.closest(".box");
-  n = clicked.dataset.tra;
-  // console.log(e.target.classList.contains("fa-trash"));
-  cartDelete(n);
-  // cartDelete();
+
+  if (e.target.classList.contains("fa-trash")) {
+    const clicked = e.target.closest(".box");
+    n = clicked.dataset.tra;
+    // console.log(e.target.classList.contains("fa-trash"));
+    cartDelete(n);
+    // cartDelete();
   }
   cartDelete("hi");
 });
@@ -341,54 +338,50 @@ const userDeliveryData = function () {
   let userNameLocalStroage = localStorage.getItem("send");
   var newContactForm = deliveryDetailsDatabase.push();
   newContactForm.set({
-    User:userNameLocalStroage,
+    User: userNameLocalStroage,
     OrderProduct: currentLoginCart,
     OrderStatus: "ND",
+    OrderTaken: "nt",
     ProductId: randomNum,
-    Date:fullDate,
-    Total:total,
-    Adresss:userCartDetails[0].address,
+    Date: fullDate,
+    Total: total,
+    Adresss: userCartDetails[0].address,
   });
 };
 checkout.addEventListener("click", function (e) {
   e.preventDefault();
   // console.log(total);
-  if(currentLoginCart.length===0||total<=100)
-  {
-     alert("We regret to inform you that your order value is less than ₹100. Please note that our minimum order value is ₹100 and we are unable to process orders that do not meet this requirement.")
+  if (currentLoginCart.length === 0 || total <= 100) {
+    alert(
+      "We regret to inform you that your order value is less than ₹100. Please note that our minimum order value is ₹100 and we are unable to process orders that do not meet this requirement."
+    );
+  } else {
+    alert(
+      "Thank you for your purchase! Your invoice will be available in the View Order Details section of your account and registered Email. We appreciate your business and hope you enjoy your new agriculture product."
+    );
+    userDeliveryData();
+    deleteAllOrder();
   }
-  else
-  {
-  alert(
-    "Thank you for your purchase! Your invoice will be available in the View Order Details section of your account and registered Email. We appreciate your business and hope you enjoy your new agriculture product."
-  );
-  userDeliveryData();
-  deleteAllOrder();
-  }
-
 });
 
-const deleteAllOrder=function()
-{
- console.log(currentLoginCart.length);
- currentLoginCart.forEach((mov)=>{
-  mov.key;
-  const userId = mov.key;
-  orderDetailsDatabase
-    .child(userId)
-    .remove()
-    .then(() => {
-      // console.log("User deleted successfully");
-      // alert(
-      //   "We're sorry to hear that you removed a product from your cart. If you encountered any issues while shopping, please let us know so we can work to improve your experience. We strive to provide the best possible service and appreciate your feedback. If there's anything we can do to assist you in finding the right product, don't hesitate to reach out to our customer support team."
-      // );
-      location.reload(true);
-    })
-    .catch((error) => {
-      console.error("Error deleting user:", error);
-    });
- })
-
-
-}
+const deleteAllOrder = function () {
+  //  console.log(currentLoginCart.length);
+  currentLoginCart.forEach((mov) => {
+    mov.key;
+    const userId = mov.key;
+    orderDetailsDatabase
+      .child(userId)
+      .remove()
+      .then(() => {
+        // console.log("User deleted successfully");
+        // alert(
+        //   "We're sorry to hear that you removed a product from your cart. If you encountered any issues while shopping, please let us know so we can work to improve your experience. We strive to provide the best possible service and appreciate your feedback. If there's anything we can do to assist you in finding the right product, don't hesitate to reach out to our customer support team."
+        // );
+        location.reload(true);
+      })
+      .catch((error) => {
+        console.error("Error deleting user:", error);
+      });
+  });
+};
 //login conection//
