@@ -59,7 +59,12 @@ let currentUser = localStorage.getItem("send");
 let currentUserId = localStorage.getItem("send1");
 let viewOrderDetails = [];
 let viewAdressDetails = [];
-
+//not Login//
+if(currentUser==="")
+{
+  alert("We noticed that you are not logged in to your account. Please note that in order to access certain features of our website or to complete your purchase, you need to be logged in.\nTo log in, please click on the Log In button on the top right corner of the screen and enter your username and password. If you do not have an account yet, please click on Register to create one.")
+}
+//
 //class//
 const displayName = document.querySelector(".name_text");
 const displayId = document.querySelector(".name_id");
@@ -73,7 +78,6 @@ const getCurrentCart = function () {
       viewAdressDetails.push(mov.adresss);
     }
 
-    console.log(viewAdressDetails);
   });
 
   displayName.textContent = currentUser;
@@ -87,7 +91,6 @@ const col = document.querySelector(".col");
 const viewOrderDisplay = function () {
   row.innerHTML = "";
   viewOrderDetails.forEach((mov, i) => {
-    console.log(mov?.cart.length);
     const statusMes = mov?.orderStatus === "ND" ? "Pending" : "delivered";
     const statusCol = mov?.orderStatus === "ND" ? "red" : "green";
 
@@ -121,7 +124,7 @@ const addressInvoice3 = document.querySelector(".address3");
 const addressInvoice4 = document.querySelector(".address4");
 const rowItem = document.querySelector(".table_body");
 const invoice=document.querySelector(".wrapper");
-const body=document.querySelector(".body");
+const body=document.querySelector(".fa-xmark");
 
 //image
 const unDelivered1=document.querySelector(".penimg");
@@ -138,17 +141,27 @@ if(e.target.classList.contains("view-invoice-button1"))
     const clicked = e.target.closest(".view-invoice-button1");
     n = clicked.dataset.set;
     viewOrderInvoice(n);
+    viewOrderListInvoice(n);
     invoice.classList.remove("display");
     invoice.style.marginTop="0%";
     convertHTMLtoPDF();
+    setTimeout(() => {
+      invoice.classList.add("display");
+      }, 20);
+    // invoice.classList.add("display");
 }
 else
 {
+  if(e.target.closest(".view-invoice-button")){
     const clicked = e.target.closest(".view-invoice-button");
       n = clicked.dataset.set;
       invoice.classList.remove("display");
       viewOrderInvoice(n);
+      viewOrderListInvoice(n);
       invoice.style.marginTop="50%";
+      console.log("ok8888");
+      body.style.opacity="1";
+  }
 }
 if(viewOrderDetails[n].orderStatus==="D")
 {
@@ -162,18 +175,19 @@ else{
   unDelivered1.classList.remove("display");
   unDelivered2.classList.remove("display");
 }
+
 // console.log(viewOrderDetails[n].orderStatus);
 })
 body.addEventListener("click",function(e)
 {
     e.preventDefault();
-    if(e.target.classList.contains("view-invoice-button")) return;
+    body.style.opacity="0";
     invoice.classList.add("display");
+    location.reload(true);
 })
 const viewOrderInvoice = function (n) {
   const data = viewOrderDetails[n];
   const addressData = viewAdressDetails[0];
-  console.log(data);
   UsernameInvoice.textContent = currentUser;
   invoiceId.textContent = "#" + data.productId;
   date.textContent = data.date;
@@ -186,13 +200,16 @@ const viewOrderInvoice = function (n) {
   addressInvoice2.textContent = addressData[2];
   addressInvoice3.textContent = addressData[3];
   addressInvoice4.textContent = addressData[4];
-  viewOrderListInvoice(n);
+  
 };
+let i=0;
+
 const viewOrderListInvoice = function (n) {
   rowItem.innerHTML = "";
+  // console.log(i++);
   const data = viewOrderDetails[n];
   const cartItem = data.cart;
-  console.log(cartItem);
+  // console.log(cartItem);
   cartItem.forEach((mov,i) => {
     const html = `
     <div class="row">

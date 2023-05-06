@@ -111,7 +111,7 @@ body {
 .wrapper {
   position: absolute;
   margin: 0 auto;
-  margin-top: 50%;
+  margin-top: 60%;
   background: var(--white);
   padding: 30px;
   
@@ -332,4 +332,13 @@ body {
 {
   width: 10px;
   height: 10px;
+}
+
+.fa-xmark{
+  position: absolute;
+  font-size: 40px;
+  right: 25%;
+  top: 10px;
+  cursor: pointer;
+  opacity: 0;
 }

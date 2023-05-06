@@ -312,6 +312,10 @@ formdb1.on("value", function (snapshot) {
 });
 const getData = function () {
   const find1 = alreadyUser.find((mov) => mov?.fullName === funa);
+  if(find1===undefined)
+  {
+    alert("We noticed that you are not logged in to your account. Please note that in order to access certain features of our website or to complete your purchase, you need to be logged in.\nTo log in, please click on the Log In button on the top right corner of the screen and enter your username and password. If you do not have an account yet, please click on Register to create one.")
+  }
   userName.textContent = `${find1.fullName}`;
   pinCode.textContent = `${find1.pincocde}`;
 };

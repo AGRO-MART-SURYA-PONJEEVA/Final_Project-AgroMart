@@ -280,6 +280,8 @@ login.addEventListener("click", function (e) {
     }
   } else {
     localStorage.setItem("send2", 5);
+    localStorage.setItem("send", "");
+    localStorage.setItem("send1", "");
     location.reload(true);
   }
 });
@@ -350,9 +352,10 @@ const userDeliveryData = function () {
 };
 checkout.addEventListener("click", function (e) {
   e.preventDefault();
-  if(currentLoginCart.length===0)
+  // console.log(total);
+  if(currentLoginCart.length===0||total<=100)
   {
-     alert("Add product to Cart :)")
+     alert("We regret to inform you that your order value is less than ₹100. Please note that our minimum order value is ₹100 and we are unable to process orders that do not meet this requirement.")
   }
   else
   {
@@ -362,7 +365,9 @@ checkout.addEventListener("click", function (e) {
   userDeliveryData();
   deleteAllOrder();
   }
+
 });
+
 const deleteAllOrder=function()
 {
  console.log(currentLoginCart.length);
