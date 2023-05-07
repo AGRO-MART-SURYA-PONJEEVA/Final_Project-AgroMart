@@ -1,0 +1,22 @@
+{
+    "name": "Agro Mart",
+    "short_name": "Agro Mart",
+    "description": "this website is to get the farmer product fresh and in good manner",
+    "icons": [
+      {
+        "src": "/image/favicon.PNG",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/image/favicon.PNG",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff"
+  }
+  
