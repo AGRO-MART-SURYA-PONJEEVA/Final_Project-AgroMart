@@ -66,9 +66,11 @@ const review = function () {
   });
 };
 const loading = document.querySelector(".loading");
+const footer=document.querySelector("footer")
 setTimeout(() => {
   review();
   loading.classList.add("display");
+  footer.classList.remove("display");
 }, 2000);
 ////////////////////////////////////////////////////////////////////////////////////
 //my code//
