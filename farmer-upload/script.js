@@ -40,6 +40,7 @@ let file1;
 let file2;
 let file3;
 let file4;
+let checkImage=0;
 //////////////////////////////////
 publish.addEventListener("click", function () {
   file1 = imageInput.files[0];
@@ -67,6 +68,7 @@ publish.addEventListener("click", function () {
     no.forEach((mov) => {
       mov.textContent = "";
     });
+    checkImage=1;
   } else {
     alert("Plz select four Image!...");
   }
@@ -213,7 +215,8 @@ submit.addEventListener("click", function (e) {
       qun !== "" &&
       exda !== "" &&
       pr !== "" &&
-      text !== ""
+      text !== ""&&
+      checkImage===1
     ) {
       const nameImage = `${farmerName}-${emai}-${mob}-${cit}-${productName}-${cate}-${qun}-${exda}-${pr}-${fullDate}-${text}-${randomNum}`;
       var newContactForm = formdb.push();
@@ -230,7 +233,7 @@ submit.addEventListener("click", function (e) {
       ref.child(name + "4").put(file4);
       alert("Your product upload successfully");
     } else {
-      alert("Plz Enter all the details for product update in webpage");
+      alert("Plz Enter all the details and upload product image for product update in webpage");
     }
   }
   else{

@@ -39,6 +39,7 @@ let file1;
 let file2;
 let file3;
 let file4;
+let checkImage=0;
 //////////////////////////////////
 publish.addEventListener("click", function () {
    file1 = imageInput.files[0];
@@ -66,6 +67,7 @@ publish.addEventListener("click", function () {
     no.forEach((mov) => {
       mov.textContent = "";
     });
+    checkImage=1;
   } else {
     alert("Plz select four Image!...");
   }
@@ -124,7 +126,8 @@ submit.addEventListener("click", function (e) {
       qun !== "" &&
       exda !== "" &&
       pr !== "" &&
-      text !== ""
+      text !== ""&&
+      checkImage===1
     ) {
       // console.log(mob);
       const nameImage = `${farmerName}-${emai}-${mob}-${cit}-${productName}-${cate}-${qun}-${exda}-${pr}-${fullDate}-${text}-${randomNum}`;
