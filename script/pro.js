@@ -121,6 +121,7 @@ let n;
 let userId = "";
 let currentLogin = "";
 let currentUserName = "";
+let adress=[];
 //class//
 const login = document.querySelector(".butt");
 const id = document.querySelector(".id");
@@ -134,6 +135,7 @@ const row = document.querySelector(".scrol");
 const priceUpdate = document.querySelector(".price_update");
 //localStroage//
 let funa1 = localStorage.getItem("send1");
+let user = localStorage.getItem("send");
 let logOut = localStorage.getItem("send2");
 //getting value from firebase//
 
@@ -169,8 +171,19 @@ orderDetailsDatabase.on("value", function (snapshot) {
     };
     userCartDetails.push(user);
   });
-  // console.log(userCartDetails[0].address);
+  // console.log(userCartDetails);
+  userCartDetails.forEach((mov)=>
+{
+  // console.log(mov);
+  if(mov.cusName===user)
+  {
+    adress.push(mov.address)
+  }
 });
+});
+
+//take current user//
+
 
 //function//
 
@@ -213,6 +226,7 @@ const displayCart = function () {
 
   //cart details display
   currentLoginCart.forEach((mov, i) => {
+    console.log(mov);
     total = total + Number(mov.price);
     const html = `
     <div class="box" data-tra="${i}">
@@ -250,7 +264,6 @@ const cartDelete = function (n) {
   }
 };
 //addEventListener
-
 //login button
 login.addEventListener("click", function (e) {
   e.preventDefault();
@@ -272,6 +285,7 @@ login.addEventListener("click", function (e) {
       localStorage.setItem("send1", userIdLogin);
       localStorage.setItem("send2", 0);
       displayCart();
+      location.reload(true);
     } else {
       alert("Plz check your Agro Mart Id");
     }
@@ -317,9 +331,8 @@ bin.addEventListener("click", function (e) {
   if (e.target.classList.contains("fa-trash")) {
     const clicked = e.target.closest(".box");
     n = clicked.dataset.tra;
-    // console.log(e.target.classList.contains("fa-trash"));
+
     cartDelete(n);
-    // cartDelete();
   }
   cartDelete("hi");
 });
@@ -345,13 +358,13 @@ const userDeliveryData = function () {
     ProductId: randomNum,
     Date: fullDate,
     Total: total,
-    Adresss: userCartDetails[0].address,
+    Adresss: adress[0],
   });
 };
 checkout.addEventListener("click", function (e) {
   e.preventDefault();
   // console.log(total);
-  if (currentLoginCart.length === 0 || total <= 100) {
+  if (currentLoginCart.length === 0 || total < 100) {
     alert(
       "We regret to inform you that your order value is less than ₹100. Please note that our minimum order value is ₹100 and we are unable to process orders that do not meet this requirement."
     );
@@ -373,10 +386,6 @@ const deleteAllOrder = function () {
       .child(userId)
       .remove()
       .then(() => {
-        // console.log("User deleted successfully");
-        // alert(
-        //   "We're sorry to hear that you removed a product from your cart. If you encountered any issues while shopping, please let us know so we can work to improve your experience. We strive to provide the best possible service and appreciate your feedback. If there's anything we can do to assist you in finding the right product, don't hesitate to reach out to our customer support team."
-        // );
         location.reload(true);
       })
       .catch((error) => {
