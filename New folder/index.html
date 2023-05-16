@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmer's Market</title>
+    <link rel="stylesheet" href="/New folder/style.css" />
+  </head>
+  <script
+    type="module"
+    src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"
+  ></script>
+  <script
+    type="module"
+    src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"
+  ></script>
+  <script
+    type="module"
+    src="https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js"
+  ></script>
+  <body>
+    <nav>
+      <div class="navbar">
+        <a href="/Com_agromart_mainPage.html">Home</a>
+        <a href="#" id="profileLink">Profile</a>
+        <a href="/farmer-upload/index.html">Upload</a>
+        <a href="/Com_agromart_mainPage.html">Help</a>
+      </div>
+    </nav>
+    <div class="popup" id="profilePopup">
+      <div class="popup-content">
+        <h2 class="h2">Profile</h2>
+        <p class="head">Basic information:</p>
+        <p class="n">Name : Rajasurya R</p>
+        <p class="i">Id : rajasurya-2002-f</p>
+        <p class="m">Mobile Number : 9840864118</p>
+        <p class="tot">Total Profit : ₹200</p>
+        <button id="closeButton">Close</button>
+      </div>
+    </div>
+    <header>
+      <h1>
+        Welcome to <span style="color: green">Agro Mart</span> Product Status
+      </h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Product Statistics</h2>
+        <table id="productTable">
+          <tr>
+            <th>Product ID</th>
+            <th>Product</th>
+            <th>Quantity Available</th>
+            <th>Price</th>
+            <th>Expiry Date</th>
+            <th>Profit</th>
+          </tr>
+          <!-- Table rows will be dynamically added using JavaScript -->
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 Agro Mart</p>
+    </footer>
+  </body>
+  <script
+    type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script src="/New folder/script.js" defer></script>
+</html>

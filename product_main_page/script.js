@@ -340,6 +340,7 @@ const updateData = function () {
 };
 
 const takeOrder = function (o, kg, ot) {
+  updateData();
   let orderDetails = userProduct[o];
   const totalKg = Number(orderDetails.quantityLiveGet);
   const totalamount = Number(orderDetails.price);
@@ -353,7 +354,8 @@ const takeOrder = function (o, kg, ot) {
         find1.road
       }-${find1.landmark}-${find1.mobile}-${orderDetails.productName}-${kg}-${
         kg * totalamount
-      }-${ot}-${randomNum}`;
+      }-${ot}-${randomNum}-${key[o]}-${Math.abs(kg - orderDetails.quantityLiveGet)}`;
+     
       var newContactForm = orderDetailsDatabase.push();
       newContactForm.set({
         FarmerAddress: farmerAddress,
@@ -363,7 +365,7 @@ const takeOrder = function (o, kg, ot) {
       var newData = {
         Quantity: `${Math.abs(kg - orderDetails.quantityLiveGet)}`,
       };
-      updateData();
+      
       updateDataLive(key[o], newData);
       alert(`Your order is confirmed :)\n Total Amount:${kg * totalamount}`);
       location.reload(true);

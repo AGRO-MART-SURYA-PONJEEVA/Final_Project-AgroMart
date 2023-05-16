@@ -16,6 +16,7 @@ var orderDetailsDatabase = firebase.database().ref("Global_order_details");
 var deliveryDetailsDatabase = firebase
   .database()
   .ref("Global_delivery_details");
+  var qtyValueUpdate = firebase.database().ref("Global_Product_Details");
 /////////////////
 let searchForm = document.querySelector(".search-form");
 document.querySelector("#search-btn").onclick = () => {
@@ -116,12 +117,15 @@ let alreadyUser = [];
 let userCartDetails = [];
 let currentLoginCart = [];
 let key = [];
+let updateKeyValue=[];
+let qtyvalue=[];
 let a = 0;
 let n;
 let userId = "";
 let currentLogin = "";
 let currentUserName = "";
 let adress=[];
+var database = firebase.database();
 //class//
 const login = document.querySelector(".butt");
 const id = document.querySelector(".id");
@@ -160,7 +164,7 @@ orderDetailsDatabase.on("value", function (snapshot) {
   snapshot.forEach(function (element) {
     let customberDetails = element.val().CustomberAddress;
     customberDetails = customberDetails.split("-");
-    //  console.log(customberDetails);
+     console.log(customberDetails);
     const user = {
       cusName: customberDetails[0],
       product: customberDetails[5],
@@ -168,6 +172,8 @@ orderDetailsDatabase.on("value", function (snapshot) {
       qty: customberDetails[6],
       key: element.key,
       address: customberDetails,
+      updateKey:customberDetails[10],
+      liveQty:customberDetails[11],
     };
     userCartDetails.push(user);
   });
@@ -216,6 +222,8 @@ const displayCart = function () {
     if (mov.cusName === currentLogin) {
       currentLoginCart.push(mov);
       key.push(mov.key);
+      updateKeyValue.push(mov.updateKey);
+      qtyvalue.push(mov.qty);
     }
   });
 
@@ -226,7 +234,6 @@ const displayCart = function () {
 
   //cart details display
   currentLoginCart.forEach((mov, i) => {
-    console.log(mov);
     total = total + Number(mov.price);
     const html = `
     <div class="box" data-tra="${i}">
@@ -247,6 +254,18 @@ const displayCart = function () {
 //cart delete
 const cartDelete = function (n) {
   if (n !== "hi") {
+  var newData = {
+    Quantity: `${qtyvalue[n]}`,
+  };
+  database
+    .ref("Global_Product_Details/" + updateKeyValue[n])
+    .update(newData)
+    .then(function () {
+      console.log("Data updated successfully!");
+    })
+    .catch(function (error) {
+      console.error("Error updating data: ", error);
+    });
     const userId = key[n];
     orderDetailsDatabase
       .child(userId)
@@ -394,3 +413,5 @@ const deleteAllOrder = function () {
   });
 };
 //login conection//
+//after removeing cart item and reasign value//
+
