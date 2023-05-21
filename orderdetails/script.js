@@ -159,7 +159,6 @@ else
       viewOrderInvoice(n);
       viewOrderListInvoice(n);
       invoice.style.marginTop="50%";
-      console.log("ok8888");
       body.style.opacity="1";
   }
 }
