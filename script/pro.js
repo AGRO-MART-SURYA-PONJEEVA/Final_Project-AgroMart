@@ -164,7 +164,6 @@ orderDetailsDatabase.on("value", function (snapshot) {
   snapshot.forEach(function (element) {
     let customberDetails = element.val().CustomberAddress;
     customberDetails = customberDetails.split("-");
-    console.log(customberDetails);
     const user = {
       cusName: customberDetails[0],
       product: customberDetails[5],
@@ -172,8 +171,6 @@ orderDetailsDatabase.on("value", function (snapshot) {
       qty: customberDetails[6],
       key: element.key,
       address: customberDetails,
-      updateKey: customberDetails[10],
-      liveQty: customberDetails[11],
     };
     userCartDetails.push(user);
   });
