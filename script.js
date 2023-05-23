@@ -7,7 +7,7 @@ function widthChangeCallback(myMediaQuery) {
     mobile.classList.add("display");
     computer.classList.remove("display");
     setTimeout(() => {
-      window.location.href = "/Com_agromart_mainPage.html";
+      // window.location.href = "/Com_agromart_mainPage.html";
     }, 100);
   } else {
     mobile.classList.remove("display");
